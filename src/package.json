@@ -1,0 +1,13 @@
+{
+  "title": "Material demo",
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "description": "https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/buttons/DisableElevation.js",
+  "dependencies": {
+    "@material-ui/core": "4.9.9",
+    "@material-ui/icons": "4.9.1",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}
