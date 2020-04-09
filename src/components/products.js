@@ -22,7 +22,7 @@ function CardItem() {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="/image/shoes1"
           title="Contemplative Reptile"
         />
         <CardContent>
