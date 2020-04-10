@@ -3,6 +3,7 @@ import Product from "./components/products";
 import Header from "./components/header";
 import NotificatopnBar from "./components/notification";
 import Filter from "./components/filter";
+import EnhancedTable from "./components/table"
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 const useStyles = makeStyles(theme => ({
@@ -28,8 +29,9 @@ export default function Demo() {
       <main className={classes.content}>
         <Toolbar />
         <NotificatopnBar />
-        <Filter />
-        <Product />
+        <EnhancedTable />
+        {/* <Filter />
+        <Product /> */}
       </main>
     </div>
   );
