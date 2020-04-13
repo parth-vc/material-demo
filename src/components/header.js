@@ -16,22 +16,27 @@ import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
 import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import StarBorder from "@material-ui/icons/StarBorder";
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Avatar from "@material-ui/core/Avatar";
-import HomeIcon from '@material-ui/icons/Home';
-import DescriptionIcon from '@material-ui/icons/Description';
+import HomeIcon from "@material-ui/icons/Home";
+import DescriptionIcon from "@material-ui/icons/Description";
+import AppsIcon from "@material-ui/icons/Apps";
+import FilterNoneIcon from "@material-ui/icons/FilterNone";
+import GridOnIcon from "@material-ui/icons/GridOn";
+// import { spacing } from '@material-ui/system';
+
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
   },
   nested: {
-    paddingLeft: theme.spacing(5),
+    paddingLeft: theme.spacing(10)
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -50,13 +55,12 @@ const useStyles = makeStyles(theme => ({
 export default function Header() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [useropen,setUseropen]=React.useState(false)
-  const handleUser = () =>{
-    setUseropen(!useropen)
-  }
+  const [useropen, setUseropen] = React.useState(false);
+  const handleUser = () => {
+    setUseropen(!useropen);
+  };
   const handleClick = () => {
     setOpen(!open);
-    
   };
   return (
     <>
@@ -78,7 +82,8 @@ export default function Header() {
               <NotificationsNoneOutlinedIcon />
             </Badge>
           </IconButton>
-          <Avatar src="/broken-image.jpg" />
+          <Avatar marginRight={1} src="/broken-image.jpg" />
+          <Typography marginLeft={2}>Hi,Robert Cotten</Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -91,60 +96,72 @@ export default function Header() {
         <Toolbar />
 
         <div className={classes.drawerContainer}>
-      <List className={classes.root}>
-      <ListItem button>
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItem>
-      <ListItem button onClick={handleClick}>
-        <ListItemIcon>
-          <ShoppingCartOutlinedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Ecommerce" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-        </List>
-      </Collapse>
-      <ListItem button onClick={handleUser}>
-        <ListItemIcon>
-          <AccountCircleIcon />
-        </ListItemIcon>
-        <ListItemText primary="User" />
-        {useropen ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={useropen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-        </List>
-      </Collapse>
-      <ListItem button>
-        <ListItemIcon>
-          <DescriptionIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItem>
-    </List>        
-  <Divider />
+          <List className={classes.root}>
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+            <ListItem button onClick={handleClick}>
+              <ListItemIcon>
+                <ShoppingCartOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Ecommerce" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  
+                  <ListItemText primary="Product Manage"/>
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemText primary="Product Grid"/>
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  
+                  <ListItemText primary="Product Page"/>
+                </ListItem>
+              </List>
+            </Collapse>
+            <ListItem button onClick={handleUser}>
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="User" />
+              {useropen ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={useropen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary="Starred" />
+                </ListItem>
+              </List>
+            </Collapse>
+            <ListItem button>
+              <ListItemIcon>
+                <DescriptionIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          </List>
+          <Divider />
+          <Typography m={1}>TEMPLATE</Typography>
           <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
+            {["Core", "Table", "UI Elements"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text === "Core" ? (
+                    <AppsIcon />
+                  ) : text === "Table" ? (
+                    <GridOnIcon />
+                  ) : (
+                    <FilterNoneIcon />
+                  )}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
