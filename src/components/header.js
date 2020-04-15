@@ -28,12 +28,31 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import AppsIcon from "@material-ui/icons/Apps";
 import FilterNoneIcon from "@material-ui/icons/FilterNone";
 import GridOnIcon from "@material-ui/icons/GridOn";
-// import { spacing } from '@material-ui/system';
+import BarChartRoundedIcon from '@material-ui/icons/BarChartRounded';
+import MapRoundedIcon from '@material-ui/icons/MapRounded';
+import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
+import DashBoardNotificatopnBar from './dashNotifification'
+import DashboardCharts from './widgets/mainwidget'
+import NotificatopnBar from './notification'
+import Filter from './filter'
+import Product from './products'
+import EnhancedTable from './table'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 
-const drawerWidth = 240;
+const drawerWidth = 250;
+
 const useStyles = makeStyles(theme => ({
-  grow: {
-    flexGrow: 1
+  root:{
+margin:theme.spacing(2)
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
   },
   username:{
     marginLeft:theme.spacing(1)
@@ -41,8 +60,16 @@ const useStyles = makeStyles(theme => ({
   Avatar:{
     marginLeft:theme.spacing(1)
   },
+  grow: {
+    flexGrow: 1
+  },
+  bullet: {
+    // display: 'inline-block',
+    marginRight: theme.spacing(1.5),
+    transform: 'scale(5)',
+  },
   nested: {
-    paddingLeft: theme.spacing(10)
+    paddingLeft: theme.spacing(5)
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -60,6 +87,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function Header() {
   const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
   const [open, setOpen] = React.useState(false);
   const [useropen, setUseropen] = React.useState(false);
   const handleUser = () => {
@@ -70,6 +98,7 @@ export default function Header() {
   };
   return (
     <>
+<Router>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
@@ -102,13 +131,15 @@ export default function Header() {
         <Toolbar />
 
         <div className={classes.drawerContainer}>
-        <List className={classes.root}>
+          <List className={classes.root}>
+          <NavLink to="/Dashboard">
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText style={{ color: "black" }} primary="Dashboard" />
             </ListItem>
+            </NavLink>
             <ListItem button onClick={handleClick}>
               <ListItemIcon>
                 <ShoppingCartOutlinedIcon />
@@ -118,17 +149,21 @@ export default function Header() {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
+              <NavLink to="/Ecommerce/ProductManage">
                 <ListItem button className={classes.nested}>
                   
-                  <ListItemText primary="Product Manage"/>
+                  <ListItemText>{bull}Product Manage</ListItemText>
                 </ListItem>
+                </NavLink>
+                <NavLink to="/Ecommerce/ProductGrid">
+                <ListItem button className={classes.nested}> 
+                  <ListItemText>{bull}Product Grid</ListItemText>
+                </ListItem>
+                </NavLink>
                 <ListItem button className={classes.nested}>
-                  <ListItemText primary="Product Grid"/>
+                  <ListItemText>{bull}Product Page</ListItemText>
                 </ListItem>
-                <ListItem button className={classes.nested}>
-                  
-                  <ListItemText primary="Product Page"/>
-                </ListItem>
+              
               </List>
             </Collapse>
             <ListItem button onClick={handleUser}>
@@ -141,10 +176,13 @@ export default function Header() {
             <Collapse in={useropen} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItem button className={classes.nested}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
+                  <ListItemText>{bull}User List</ListItemText>
+                </ListItem>
+                <ListItem button className={classes.nested}> 
+                  <ListItemText>{bull}User Add</ListItemText>
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemText>{bull}User Edit</ListItemText>
                 </ListItem>
               </List>
             </Collapse>
@@ -157,44 +195,44 @@ export default function Header() {
           </List>
           <Divider />
           <Typography className={classes.root}>TEMPLATE</Typography>
-          <List>
-            <ListItem>
+          <List className={classes.root}>
+            <ListItem button>
             <ListItemIcon>
                  <AppsIcon />
               </ListItemIcon>
              <ListItemText primary="core" />
               </ListItem>
 
-              <ListItem>
+              <ListItem button>
             <ListItemIcon>
                  <GridOnIcon />
               </ListItemIcon>
              <ListItemText primary="Tables" />
               </ListItem>
 
-              <ListItem>
+              <ListItem button>
             <ListItemIcon>
                  <FilterNoneIcon  />
               </ListItemIcon>
              <ListItemText primary="UI Elements" />
               </ListItem>
 
-              <ListItem>
-            <ListItemIcon>
+              <ListItem button>
+            <ListItemIcon >
                  <DescriptionOutlinedIcon />
               </ListItemIcon>
              <ListItemText primary="Forms" />
               </ListItem>
 
               
-              <ListItem>
+              <ListItem button>
             <ListItemIcon>
                  <BarChartRoundedIcon />
               </ListItemIcon>
              <ListItemText primary="Charts" />
               </ListItem>
 
-              <ListItem>
+              <ListItem button>
             <ListItemIcon>
                  <MapRoundedIcon />
               </ListItemIcon>
@@ -203,6 +241,23 @@ export default function Header() {
           </List>
         </div>
       </Drawer>
+      <main className={classes.content}>
+          <Toolbar />
+          <Route path="/Dashboard">
+            <DashBoardNotificatopnBar />
+            <DashboardCharts />
+          </Route>
+          <Route path="/Ecommerce/ProductManage">
+            <NotificatopnBar />
+            <Filter />
+            <Product />
+          </Route>
+          <Route path="/Ecommerce/ProductGrid">
+            <NotificatopnBar />
+            <EnhancedTable />
+          </Route>
+        </main>
+      </Router>
     </>
   );
 }

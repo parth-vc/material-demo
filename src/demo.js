@@ -26,13 +26,13 @@ export default function Demo() {
   return (
     <div className={classes.root}>
       <Header />
-      <main className={classes.content}>
+      {/* <main className={classes.content}>
         <Toolbar />
         <NotificatopnBar />
         <EnhancedTable />
-        {/* <Filter />
-        <Product /> */}
-      </main>
+        <Filter />
+        <Product />
+      </main> */}
     </div>
   );
 }
