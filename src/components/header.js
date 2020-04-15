@@ -35,6 +35,12 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
   },
+  username:{
+    marginLeft:theme.spacing(1)
+  },
+  Avatar:{
+    marginLeft:theme.spacing(1)
+  },
   nested: {
     paddingLeft: theme.spacing(10)
   },
@@ -82,8 +88,8 @@ export default function Header() {
               <NotificationsNoneOutlinedIcon />
             </Badge>
           </IconButton>
-          <Avatar marginRight={1} src="/broken-image.jpg" />
-          <Typography marginLeft={2}>Hi,Robert Cotten</Typography>
+          <Avatar className={classes.Avatar} src="/broken-image.jpg" />
+          <Typography className={classes.username}>Hi,Robert Cotten</Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -96,7 +102,7 @@ export default function Header() {
         <Toolbar />
 
         <div className={classes.drawerContainer}>
-          <List className={classes.root}>
+        <List className={classes.root}>
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
@@ -150,22 +156,50 @@ export default function Header() {
             </ListItem>
           </List>
           <Divider />
-          <Typography m={1}>TEMPLATE</Typography>
+          <Typography className={classes.root}>TEMPLATE</Typography>
           <List>
-            {["Core", "Table", "UI Elements"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {text === "Core" ? (
-                    <AppsIcon />
-                  ) : text === "Table" ? (
-                    <GridOnIcon />
-                  ) : (
-                    <FilterNoneIcon />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+            <ListItem>
+            <ListItemIcon>
+                 <AppsIcon />
+              </ListItemIcon>
+             <ListItemText primary="core" />
               </ListItem>
-            ))}
+
+              <ListItem>
+            <ListItemIcon>
+                 <GridOnIcon />
+              </ListItemIcon>
+             <ListItemText primary="Tables" />
+              </ListItem>
+
+              <ListItem>
+            <ListItemIcon>
+                 <FilterNoneIcon  />
+              </ListItemIcon>
+             <ListItemText primary="UI Elements" />
+              </ListItem>
+
+              <ListItem>
+            <ListItemIcon>
+                 <DescriptionOutlinedIcon />
+              </ListItemIcon>
+             <ListItemText primary="Forms" />
+              </ListItem>
+
+              
+              <ListItem>
+            <ListItemIcon>
+                 <BarChartRoundedIcon />
+              </ListItemIcon>
+             <ListItemText primary="Charts" />
+              </ListItem>
+
+              <ListItem>
+            <ListItemIcon>
+                 <MapRoundedIcon />
+              </ListItemIcon>
+             <ListItemText primary="Maps" />
+              </ListItem>
           </List>
         </div>
       </Drawer>
