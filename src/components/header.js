@@ -34,9 +34,11 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import DashBoardNotificatopnBar from './dashNotifification'
 import DashboardCharts from './widgets/mainwidget'
 import NotificatopnBar from './notification'
+import NotificatopnBar1 from './notification1'
 import Filter from './filter'
 import Product from './products'
 import EnhancedTable from './table'
+import EnhancedTable1 from './table1'
 import {
   BrowserRouter as Router,
   Route,
@@ -51,7 +53,7 @@ const useStyles = makeStyles(theme => ({
 margin:theme.spacing(2)
   },
   content: {
-    flexGrow: 1,
+    // flexGrow: 1,
     padding: theme.spacing(3)
   },
   username:{
@@ -64,12 +66,15 @@ margin:theme.spacing(2)
     flexGrow: 1
   },
   bullet: {
-    // display: 'inline-block',
+    display: 'inline-block',
     marginRight: theme.spacing(1.5),
-    transform: 'scale(5)',
+    transform: 'scale(2)',
   },
   nested: {
-    paddingLeft: theme.spacing(5)
+    paddingLeft: theme.spacing(5),
+    textDecoration:"none"
+
+
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -96,6 +101,120 @@ export default function Header() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+const drawer = (
+  <>
+  <List className={classes.root}>
+  <NavLink activeClassName='is-active' style={{ color: "black", textDecoration: 'none' }} to="/">
+    <ListItem button>
+      <ListItemIcon>
+        <HomeIcon />
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" />
+    </ListItem>
+    </NavLink>
+    <ListItem button onClick={handleClick}>
+      <ListItemIcon>
+        <ShoppingCartOutlinedIcon />
+      </ListItemIcon>
+      <ListItemText primary="Ecommerce" />
+      {open ? <ExpandLess /> : <ExpandMore />}
+    </ListItem>
+    <Collapse in={open} timeout="auto" unmountOnExit>
+      <List component="div" disablePadding>
+      <NavLink style={{ color: "black", textDecoration: 'none' }} to="/Ecommerce/ProductManage">
+        <ListItem button className={classes.nested}>
+          
+          <ListItemText style={{ color: "black" }}>{bull}Product Manage</ListItemText>
+        </ListItem>
+        </NavLink>
+        <NavLink style={{ color: "black", textDecoration: 'none' }} to="/Ecommerce/ProductGrid">
+        <ListItem button className={classes.nested}> 
+          <ListItemText style={{ color: "black", textDecoration: 'none' }}>{bull}Product Grid</ListItemText>
+        </ListItem>
+        </NavLink>
+        <ListItem button className={classes.nested}>
+          <ListItemText>{bull}Product Page</ListItemText>
+        </ListItem>
+      
+      </List>
+    </Collapse>
+    <ListItem button onClick={handleUser}>
+      <ListItemIcon>
+        <AccountCircleIcon />
+      </ListItemIcon>
+      <ListItemText primary="User" />
+      {useropen ? <ExpandLess /> : <ExpandMore />}
+    </ListItem>
+    <Collapse in={useropen} timeout="auto" unmountOnExit>
+      <List component="div" disablePadding>
+        <ListItem button className={classes.nested}>
+          <ListItemText 
+          >{bull}User List</ListItemText>
+        </ListItem>
+        <ListItem button className={classes.nested}> 
+          <ListItemText>{bull}User Add</ListItemText>
+        </ListItem>
+        <ListItem button className={classes.nested}>
+          <ListItemText>{bull}User Edit</ListItemText>
+        </ListItem>
+      </List>
+    </Collapse>
+    <ListItem button>
+      <ListItemIcon>
+        <DescriptionIcon />
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" />
+    </ListItem>
+  </List>
+  <Divider />
+  <Typography className={classes.root}>TEMPLATE</Typography>
+  <List className={classes.root}>
+    <ListItem button>
+    <ListItemIcon>
+         <AppsIcon />
+      </ListItemIcon>
+     <ListItemText primary="core" />
+      </ListItem>
+
+      <ListItem button>
+    <ListItemIcon>
+         <GridOnIcon />
+      </ListItemIcon>
+     <ListItemText primary="Tables" />
+      </ListItem>
+
+      <ListItem button>
+    <ListItemIcon>
+         <FilterNoneIcon  />
+      </ListItemIcon>
+     <ListItemText primary="UI Elements" />
+      </ListItem>
+
+      <ListItem button>
+    <ListItemIcon >
+         <DescriptionOutlinedIcon />
+      </ListItemIcon>
+     <ListItemText primary="Forms" />
+      </ListItem>
+
+      
+      <ListItem button>
+    <ListItemIcon>
+         <BarChartRoundedIcon />
+      </ListItemIcon>
+     <ListItemText primary="Charts" />
+      </ListItem>
+
+      <ListItem button>
+    <ListItemIcon>
+         <MapRoundedIcon />
+      </ListItemIcon>
+     <ListItemText primary="Maps" />
+      </ListItem>
+  </List>
+  </>
+)
   return (
     <>
 <Router>
@@ -131,119 +250,13 @@ export default function Header() {
         <Toolbar />
 
         <div className={classes.drawerContainer}>
-          <List className={classes.root}>
-          <NavLink to="/Dashboard">
-            <ListItem button>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText style={{ color: "black" }} primary="Dashboard" />
-            </ListItem>
-            </NavLink>
-            <ListItem button onClick={handleClick}>
-              <ListItemIcon>
-                <ShoppingCartOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Ecommerce" />
-              {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-              <NavLink to="/Ecommerce/ProductManage">
-                <ListItem button className={classes.nested}>
-                  
-                  <ListItemText>{bull}Product Manage</ListItemText>
-                </ListItem>
-                </NavLink>
-                <NavLink to="/Ecommerce/ProductGrid">
-                <ListItem button className={classes.nested}> 
-                  <ListItemText>{bull}Product Grid</ListItemText>
-                </ListItem>
-                </NavLink>
-                <ListItem button className={classes.nested}>
-                  <ListItemText>{bull}Product Page</ListItemText>
-                </ListItem>
-              
-              </List>
-            </Collapse>
-            <ListItem button onClick={handleUser}>
-              <ListItemIcon>
-                <AccountCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary="User" />
-              {useropen ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={useropen} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem button className={classes.nested}>
-                  <ListItemText>{bull}User List</ListItemText>
-                </ListItem>
-                <ListItem button className={classes.nested}> 
-                  <ListItemText>{bull}User Add</ListItemText>
-                </ListItem>
-                <ListItem button className={classes.nested}>
-                  <ListItemText>{bull}User Edit</ListItemText>
-                </ListItem>
-              </List>
-            </Collapse>
-            <ListItem button>
-              <ListItemIcon>
-                <DescriptionIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-          </List>
-          <Divider />
-          <Typography className={classes.root}>TEMPLATE</Typography>
-          <List className={classes.root}>
-            <ListItem button>
-            <ListItemIcon>
-                 <AppsIcon />
-              </ListItemIcon>
-             <ListItemText primary="core" />
-              </ListItem>
-
-              <ListItem button>
-            <ListItemIcon>
-                 <GridOnIcon />
-              </ListItemIcon>
-             <ListItemText primary="Tables" />
-              </ListItem>
-
-              <ListItem button>
-            <ListItemIcon>
-                 <FilterNoneIcon  />
-              </ListItemIcon>
-             <ListItemText primary="UI Elements" />
-              </ListItem>
-
-              <ListItem button>
-            <ListItemIcon >
-                 <DescriptionOutlinedIcon />
-              </ListItemIcon>
-             <ListItemText primary="Forms" />
-              </ListItem>
-
-              
-              <ListItem button>
-            <ListItemIcon>
-                 <BarChartRoundedIcon />
-              </ListItemIcon>
-             <ListItemText primary="Charts" />
-              </ListItem>
-
-              <ListItem button>
-            <ListItemIcon>
-                 <MapRoundedIcon />
-              </ListItemIcon>
-             <ListItemText primary="Maps" />
-              </ListItem>
-          </List>
+         {drawer}
         </div>
       </Drawer>
-      <main className={classes.content}>
+
+        <main className={classes.content}>
           <Toolbar />
-          <Route path="/Dashboard">
+          <Route exact path="/">
             <DashBoardNotificatopnBar />
             <DashboardCharts />
           </Route>

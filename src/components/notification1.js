@@ -14,7 +14,7 @@ import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 
 const useStyles = makeStyles(theme => ({
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   }
 }));
 function handleClick(event) {

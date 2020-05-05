@@ -26,9 +26,6 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { green, yellow, blue } from "@material-ui/core/colors";
 import SearchAppBar from "./searchbar";
 import Grid from "@material-ui/core/Grid";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
-import SearchIcon from "@material-ui/icons/Search";
 // import Grid from "./@material-ui/core/Grid"
 const theme = createMuiTheme({
   palette: {
@@ -66,7 +63,7 @@ function Image2() {
 }
 const useButtonStyles = makeStyles(theme => ({
   root: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(5)
   }
 }));
 
@@ -269,19 +266,13 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   btdiv: {
-    // position: "relative"
-  },
-  searchbar: {
-    margin: theme.spacing(2)
+    position: "relative"
   },
   buttonroot: {
     flexGrow: 1,
     position: "static",
     margin: theme.spacing(2),
     flex: "1 1 100%"
-  },
-  producttotle: {
-    fontSize: "10px"
   },
   paper: {
     width: "100%",
@@ -290,7 +281,7 @@ const useStyles = makeStyles(theme => ({
   },
   papperheader: {
     margin: theme.spacing(3)
-    // marginTop:theme.spacing(1)
+    // marginTop:theme.spacing()
   },
   table: {
     minWidth: 750
@@ -419,32 +410,9 @@ export default function EnhancedTable() {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <Grid container>
-            <Grid item xs={9}>
-              <Typography variant="h6" className={classes.papperheader}>
-                Products{" "}
-                <span className={classes.producttotle}>
-                  {rows.length} total
-                </span>
-              </Typography>
-            </Grid>
-            <Grid item xs={3}>
-              <TextField
-                label="Search"
-                id="outlined-start-adornment"
-                className={classes.searchbar}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  )
-                }}
-                variant="outlined"
-              />
-              {/* <SearchAppBar /> */}
-            </Grid>
-          </Grid>
+          <Typography variant="h6" className={classes.papperheader}>
+            Products
+          </Typography>
           <Grid>
             <div display="flex" className="flex-item" nowrap p={1}>
               <Grid item xs={12} spacing={3}>
@@ -458,6 +426,7 @@ export default function EnhancedTable() {
                   CREATE PRODUCT
                 </Button>
               </Grid>
+              <SearchAppBar />
             </div>
           </Grid>
           <EnhancedTableToolbar numSelected={selected.length} />
@@ -465,7 +434,7 @@ export default function EnhancedTable() {
             <Table
               className={classes.table}
               aria-labelledby="tableTitle"
-              size="medium"
+              size={dense ? "small" : "medium"}
               aria-label="enhanced table"
             >
               <EnhancedTableHead

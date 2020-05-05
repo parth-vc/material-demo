@@ -63,13 +63,14 @@ export default function SearchAppBar() {
   const classes = useStyles();
 
   return (
-    // <div className={classes.root}>
-    <Toolbar className={classes.root}>
+    <div display="inline" className={classes.root} align="right">
+    <Toolbar className={classes.root} >
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
         <InputBase
+        variant="outlined"
           placeholder="Search…"
           classes={{
             root: classes.inputRoot,
@@ -79,6 +80,6 @@ export default function SearchAppBar() {
         />
       </div>
     </Toolbar>
-    // </div>
+  </div>
   );
 }

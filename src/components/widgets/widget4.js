@@ -9,9 +9,12 @@ import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
   root: {
-    minWidth: 275,
+marginTop:theme.spacing(2),
+    // minWidth: 275,
+    minHeight:300,
+    maxHeight:300
   },
   bullet: {
     display: 'inline-block',
@@ -22,9 +25,10 @@ const useStyles = makeStyles({
     fontSize: 14,
   },
   pos: {
+    marginTop:12,
     marginBottom: 12,
   },
-});
+}));
 
 export default function Widget14() {
   const classes = useStyles();
